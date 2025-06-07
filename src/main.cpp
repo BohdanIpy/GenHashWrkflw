@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
 int main(int argc, char *argv[]) {
 
     std::cout << "Hasher version: " << hashing_major_version << "." << hashing_minor_version << "." << hashing_patch_version << std::endl;
-
+    std::cout << "Base workflow" << std::endl;
     if (argc != 2) {
         std::cerr << "Usage: ./program path_to_file\n";
         return EXIT_FAILURE;
