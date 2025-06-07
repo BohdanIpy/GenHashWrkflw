@@ -23,6 +23,9 @@ jobs:
     - name: Create build directory
       run: cmake -E make_directory build
 
+    - name: Create test directory
+      run: cmake -E make_directory build-test
+
     - name: Configure CMake (Debug)
       run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
 
