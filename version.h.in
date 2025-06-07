@@ -1,0 +1,5 @@
+#pragma once
+
+#define hashing_major_version "@MAJOR_VERSION@"
+#define hashing_minor_version "@MINOR_VERSION@"
+#define hashing_patch_version "@PATCH_VERSION@"
