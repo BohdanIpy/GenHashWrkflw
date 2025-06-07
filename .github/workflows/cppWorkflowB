@@ -1,0 +1,38 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y cmake g++ ninja-build
+
+    - name: Create build directory
+      run: cmake -E make_directory build
+
+    - name: Configure CMake (Debug)
+      run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Run tests (only in Debug)
+      run: |
+        if grep -q 'CMAKE_BUILD_TYPE.*Debug' build/CMakeCache.txt; then
+          cd build && ctest --output-on-failure
+        else
+          echo "Skipping tests: not a Debug build"
+        fi
