@@ -32,7 +32,7 @@ jobs:
     - name: Run tests (only in Debug)
       run: |
         if grep -q 'CMAKE_BUILD_TYPE.*Debug' build/CMakeCache.txt; then
-          cd build && ctest --output-on-failure
+          cd build-test && ctest --output-on-failure
         else
           echo "Skipping tests: not a Debug build"
         fi
